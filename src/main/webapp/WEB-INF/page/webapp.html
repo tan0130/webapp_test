@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>webapp 页面</title>
+    <link rel="stylesheet" href="/resources/css/jquery.mobile-1.4.5.min.css"/>
+    <script type="text/javascript" src="/resources/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/resources/js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    <div data-role="page" id="pageone">
+        <div data-role="header">
+            <a href="#" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-icon-home ui-btn-icon-left">主页</a>
+            <h1>欢迎来到我的主页</h1>
+            <a href="#" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-icon-search ui-btn-icon-left">搜索</a>
+        </div>
+
+        <div data-role="main" class="ui-content">
+            <p>点击链接查看flip（翻转）效果。 flip effect.</p>
+            <a href="#pagetwo" data-transition="flip">翻转到第二页</a>
+            <p>点击链接查看页面抛出效果。</p>
+            <a href="#pagetwo" data-transition="flow">抛出当前页，进入下一页</a>
+            <a href="/user/toFormPage" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-icon-home ui-btn-icon-left">表单</a><br>
+            <p>点击以下按钮打开面板。</p>
+            <a href="#myPanel" class="ui-btn ui-btn-b ui-btn-inline ui-corner-all ui-shadow">打开面板</a>
+        </div>
+
+        <div data-role="panel" id="myPanel" data-theme="b">
+            <h2>主题面板</h2>
+            <p>我是一个主题面板!</p>
+            <p> 你可以点击面板之外的区域来关闭，或者按下 Esc 键或滑动来关闭。</p>
+        </div>
+
+
+        <div data-role="footer">
+            <h1>底部文本</h1>
+        </div>
+    </div>
+
+    <div data-role="page" id="pagetwo">
+        <div data-role="header">
+            <h1>欢迎来到我的主页</h1>
+        </div>
+
+        <div data-role="main" class="ui-content">
+            <p>点击链接返回上一个页面。<b>注意</b>: fade（淡入）效果是默认的</p>
+            <a href="#pageone">返回第一个页面</a>
+        </div>
+
+
+        <!-- 回流表格 -->
+        <p>回流模型表格在屏幕尺寸足够大时是水平显示，而在屏幕尺寸达到足够小时，所有的数据会变成垂直显示。</p>
+
+        <p>重置窗口大小查看效果：</p>
+        <table data-role="table" class="ui-responsive">
+            <thead>
+            <tr>
+                <th>CustomerID</th>
+                <th>CustomerName</th>
+                <th>ContactName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostalCode</th>
+                <th>Country</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Obere Str. 57</td>
+                <td>Berlin</td>
+                <td>12209</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Antonio Moreno Taquer</td>
+                <td>Antonio Moreno</td>
+                <td>Mataderos 2312</td>
+                <td>Mico D.F.</td>
+                <td>05023</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Around the Horn</td>
+                <td>Thomas Hardy</td>
+                <td>120 Hanover Sq.</td>
+                <td>London</td>
+                <td>WA1 1DP</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Berglunds snabbk</td>
+                <td>Christina Berglund</td>
+                <td>Berguvsven 8</td>
+                <td>Lule</td>
+                <td>S-958 22</td>
+                <td>Sweden</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <!-- 列 -->
+        <div data-role="main" class="ui-content">
+            <p>两列布局:</p>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <a href="#" class="ui-btn ui-corner-all ui-shadow">第一列按钮</a><br>
+                    <span>第一列: 这是一些文本。 这是一些文本。 这是一些文本。 这是一些文本。 这是一些文本。</span>
+                </div>
+
+                <div class="ui-block-b">
+                    <a href="#" class="ui-btn ui-corner-all ui-shadow">第二列按钮</a><br>
+                    <span>第二列: 这是一些文本。 这是一些文本。 这是一些文本。 这是一些文本。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 有序列表 -->
+        <div data-role="main" class="ui-content">
+            <h2>有序列表：</h2>
+            <ol data-role="listview">
+                <li><a href="#">列表项</a></li>
+                <li><a href="#">列表项</a></li>
+                <li><a href="#">列表项</a></li>
+            </ol>
+            <h2>无序列表：</h2>
+            <ul data-role="listview">
+                <li><a href="#">列表项</a></li>
+                <li><a href="#">列表项</a></li>
+                <li><a href="#">列表项</a></li>
+            </ul>
+        </div>
+
+        <!-- 过滤 -->
+        <div data-role="main" class="ui-content">
+            <h2>我的通讯录</h2>
+            <form class="ui-filterable">
+                <input id="myFilter" data-type="search">
+            </form>
+            <ul data-role="listview" data-filter="true" data-input="#myFilter" data-autodividers="true" data-inset="true">
+                <li><a href="#">Adele</a></li>
+                <li><a href="#">Agnes</a></li>
+                <li><a href="#">Albert</a></li>
+                <li><a href="#">Billy</a></li>
+                <li><a href="#">Bob</a></li>
+                <li><a href="#">Calvin</a></li>
+                <li><a href="#">Cameron</a></li>
+                <li><a href="#">Chloe</a></li>
+                <li><a href="#">Christina</a></li>
+                <li><a href="#">Diana</a></li>
+                <li><a href="#">Gabriel</a></li>
+                <li><a href="#">Glen</a></li>
+                <li><a href="#">Ralph</a></li>
+                <li><a href="#">Valarie</a></li>
+            </ul>
+        </div>
+
+        <div data-role="footer">
+            <h1>底部文本</h1>
+        </div>
+    </div>
+</body>
+</html>

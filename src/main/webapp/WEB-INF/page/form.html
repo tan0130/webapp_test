@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提交表单</title>
+    <link rel="stylesheet" href="/resources/css/jquery.mobile-1.4.5.min.css"/>
+    <script type="text/javascript" src="/resources/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/resources/js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+<div data-role="page">
+    <div data-role="header" data-theme="b">
+        <h1>文本输入</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <form method="post" action="demo_form.php">
+            <div class="ui-field-contain">
+                <label for="fullname">全名：</label>
+                <input type="text" name="fullname" id="fullname">
+                <label for="bday">生日：</label>
+                <input type="date" name="bday" id="bday">
+                <label for="email">E-mail:</label>
+                <input type="email" name="email" id="email" placeholder="你的电子邮箱..">
+                <legend>请选择您的性别：</legend>
+                <label for="male">男性</label>
+                <input type="radio" name="gender" id="male" value="male">
+                <label for="female">女性</label>
+                <input type="radio" name="gender" id="female" value="female">
+                <fieldset data-role="fieldcontain">
+                    <label for="day">选择天</label>
+                    <select name="day" id="day">
+                        <option value="mon">星期一</option>
+                        <option value="tue">星期二</option>
+                        <option value="wed">星期三</option>
+                        <option value="thu">星期四</option>
+                        <option value="fri">星期五</option>
+                        <option value="sat">星期六</option>
+                        <option value="sun">星期日</option>
+                    </select>
+                </fieldset>
+                <label for="switch">切换开关:</label>
+                <input type="checkbox" data-role="flipswitch" name="switch" id="switch">
+            </div>
+            <input type="submit" data-inline="true" value="提交">
+        </form>
+    </div>
+</div>
+</body>
+</html>
