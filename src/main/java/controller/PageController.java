@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * create by 1311230692@qq.com on 2018/8/14 14:42
- * 用户操作控制层
+ * 页面跳转
  **/
 @Controller
-@RequestMapping(value="/user")
+@RequestMapping(value="/page")
 public class PageController {
 
     /**
@@ -57,5 +57,13 @@ public class PageController {
     @RequestMapping(value="/toIndexPage")
     public String toIndexPage() {
         return "admin/index";
+    }
+
+    /**
+     * 跳转 userinfo 页面
+     * */
+    @RequestMapping(value="/toUserinfoPage")
+    public String toUserInfoPage() {
+        return "page/userinfo";
     }
 }

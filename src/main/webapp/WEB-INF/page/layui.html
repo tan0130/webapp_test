@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>layout 后台大布局 - Layui</title>
     <link rel="stylesheet" href="/resources/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/resources/css/iconfont.css"/>
     <!--<link rel="stylesheet" href="/resources/css/layer.css"/>
     <link rel="stylesheet" href="/resources/css/laydate.css"/>-->
     <script type="text/javascript" src="/resources/js/jquery.min.js"></script>
@@ -17,7 +18,7 @@
         <div class="layui-logo">信息管理系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="/user/toLayuiFormPage" target="myFrame">控制台</a></li>
+            <li class="layui-nav-item"><a href="/page/toLayuiFormPage" target="myFrame">控制台</a></li>
             <li class="layui-nav-item"><a href="">商品管理</a></li>
             <li class="layui-nav-item"><a href="">用户</a></li>
             <li class="layui-nav-item">
@@ -53,9 +54,10 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="layui-icon layui-icon-home" href="javascript:;">&nbsp;&nbsp;主页</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="https://www.baidu.com" target="myFrame">百度一下</a></dd>
-                        <dd><a href="https://www.taobao.com" target="myFrame">淘宝</a></dd>
-                        <dd><a href="javascript:;">列表三</a></dd>
+                        <dd><a class="iconfont icon-yonghuxinxi" href="/page/toUserinfoPage" target="myFrame">&nbsp;&nbsp;用户信息</a></dd>
+                        <dd><a class="iconfont icon-baidu" href="https://www.baidu.com" target="myFrame">&nbsp;&nbsp;百度一下</a></dd>
+                        <dd><a class="iconfont icon-taobao" href="https://www.taobao.com" target="myFrame">&nbsp;&nbsp;淘宝</a></dd>
+
                         <dd><a href="">超链接</a></dd>
                     </dl>
                 </li>
@@ -76,7 +78,7 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <!--<div style="padding: 15px;">内容主体区域</div>-->
-        <iframe name="myFrame" src="/user/toIndexPage" scrolling="yes" frameborder="0" height="100%" width="100%"></iframe>
+        <iframe name="myFrame" src="/page/toIndexPage" scrolling="yes" frameborder="0" height="100%" width="100%"></iframe>
     </div>
 
     <div class="layui-footer">
@@ -104,11 +106,9 @@
         document.getElementById("myFrame").height=document.getElementById("myFrame").contentWindow.document.body.scrollHeight;
 
     }
-
     window.onresize=function(){
         changeFrameHeight();
     }
-
 
 </script>
 </body>

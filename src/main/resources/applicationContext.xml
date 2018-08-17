@@ -10,8 +10,8 @@
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-    <!-- 只解析除controller之外的注解(即解析service、dao), 避免重复加载导致事务失效  -->
-    <context:component-scan base-package="entity,mapper,service">
+    <!-- 只解析除controller之外的注解(即解析service、mapper), 避免重复加载导致事务失效  -->
+    <context:component-scan base-package="entity,dao,service,test">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
@@ -41,14 +41,17 @@
         <!-- 加载 mybatis 配置文件 -->
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <!-- 自动扫描mapping.xml文件 -->
-        <!--<property name="mapperLocations" value="classpath:mapper/*.xml" />-->
+        <property name="mapperLocations" value="classpath:mapper/UserMapping.xml" />
     </bean>
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="vehicle.dao" />
+        <property name="basePackage" value="dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
+
+    <bean id="userService" class="service.UserServiceImpl"/> <!--也可以在 service 实现类上加入 @Service 标签，效果是一样的-->
+
 
     <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
     <bean id="transactionManager"
@@ -57,7 +60,7 @@
     </bean>
 
     <!-- 使用注解事务，需要添加Transactional注解属性 -->
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <!--<tx:annotation-driven transaction-manager="transactionManager" />-->
 
     <!-- 多文件上传 -->
     <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

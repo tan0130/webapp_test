@@ -92,6 +92,11 @@
       <artifactId>spring-jdbc</artifactId>
       <version>${spring.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
 
     <!-- 添加 mysql 依赖 -->
     <dependency>
@@ -152,6 +157,11 @@
       <artifactId>log4j-web</artifactId>
       <version>${log4j.version}</version>
     </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>RELEASE</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
-
 </project>
