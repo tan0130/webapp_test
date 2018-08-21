@@ -3,7 +3,7 @@ package test;
 import dao.UserDAO;
 import entity.User;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import service.UserService;
 
 import javax.annotation.Resource;
@@ -22,7 +22,7 @@ public class UserControllerTest extends BaseJunitTest{
 
     @Test
     public void testController() {
-        List<User> userList = userService.getUserById(1);
+        List<User> userList = userService.getUserById(1,1,10);
         System.out.println("查询用户信息为：" + userList);
     }
 }

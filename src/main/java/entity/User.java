@@ -13,16 +13,20 @@ public class User {
     private String username; // 用户名称
     private String password; // 用户密码
     private String tel; // 用户电话
+    private String sex;
+//    private int page;
+//    private int limit;
 
     public User() {
     }
 
-    public User(int id, String nickname, String username, String password, String tel) {
+    public User(int id, String nickname, String username, String password, String tel, String sex) {
         this.id = id;
         this.nickname = nickname;
         this.username = username;
         this.password = password;
         this.tel = tel;
+        this.sex = sex;
     }
 
     public int getId() {
@@ -65,6 +69,14 @@ public class User {
         this.tel = tel;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -73,6 +85,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", tel='" + tel + '\'' +
+                ", sex='" + sex + '\'' +
                 '}';
     }
 }

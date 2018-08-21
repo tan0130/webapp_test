@@ -807,6 +807,7 @@ a cite {
     z-index: 998;
     width: auto;
     overflow: hidden;
+    overflow-y: auto;
     box-sizing: border-box
 }
 
@@ -842,8 +843,8 @@ a cite {
     height: 44px;
     line-height: 44px;
     padding: 0 15px;
-    background-color: #eee;
     text-align: center;
+    background-color: #eee
 }
 
 .layui-layout-admin .layui-logo {

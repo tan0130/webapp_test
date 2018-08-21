@@ -10,5 +10,6 @@ import java.util.List;
  **/
 public interface UserService {
     public List<User> getAllUser(int page, int limit); // 查询所有用户信息
-    public List<User> getUserById(int id); // 根据 id 查询用户信息
+    public int getCount(); // 返回数据库总条数
+    public List<User> getUserById(int id,int page, int limit); // 根据 id 查询用户信息
 }

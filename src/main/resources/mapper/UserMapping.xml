@@ -6,12 +6,16 @@
     <cache/>
     <!-- 获取所有用户信息 -->
     <select id = "getAllUser" resultType="java.util.Map">
-        select id,nickname,username,password,tel from tb_user limit #{arg0},#{arg1};
+        select id,nickname,username,password,tel,sex from tb_user limit #{arg0},#{arg1};
+    </select>
+
+    <select id = "getCount" resultType="int">
+        select count(1) from tb_user
     </select>
 
      <!--根据id查询用户信息 -->
-    <select id = "getUserById" parameterType = "int" resultType="java.util.Map">
-        select * from tb_user where id = #{id};
+    <select id = "getUserById" parameterType="int" resultType="java.util.Map">
+        select * from tb_user where id = #{arg0} limit #{arg2},#{arg1};
     </select>
 
     <!-- 根据ID和密码查询用户信息 在MyBatis3.4.4版不能直接使用#{0}要使用 #{arg0}-->
