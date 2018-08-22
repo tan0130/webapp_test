@@ -14,8 +14,18 @@
     </select>
 
      <!--根据id查询用户信息 -->
-    <select id = "getUserById" parameterType="int" resultType="java.util.Map">
-        select * from tb_user where id = #{arg0} limit #{arg2},#{arg1};
+    <select id = "getUserById" resultType="java.util.Map">
+        select * from tb_user where id like  #{arg0} limit #{arg1},#{arg2};
+    </select>
+
+    <!-- 验证 id 是否存在 -->
+    <select id = "getUserById1" resultType="entity.User">
+        select * from tb_user where id = #{id};
+    </select>
+
+    <!-- 验证密码是否正确 -->
+    <select id = "getUserByIdAndPassword" resultType="entity.User">
+        select * from tb_user where id = #{arg0} and password = #{arg1}
     </select>
 
     <!-- 根据ID和密码查询用户信息 在MyBatis3.4.4版不能直接使用#{0}要使用 #{arg0}-->

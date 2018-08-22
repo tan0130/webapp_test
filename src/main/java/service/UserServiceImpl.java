@@ -32,4 +32,14 @@ public class UserServiceImpl implements UserService{
     public int getCount() {
         return userDAO.getCount();
     }
+
+    @Override
+    public User getUserById1(int id) {
+        return userDAO.getUserById1(id);
+    }
+
+    @Override
+    public User getUserByIdAndPassword(int id, String password) {
+        return userDAO.getUserByIdAndPassword(id, password);
+    }
 }

@@ -1,13 +1,14 @@
 package entity;
 
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 /**
  * create by 1311230692@qq.com on 2018/8/17 10:18
  * 用户实体类
  **/
 @Entity
-public class User {
+public class User implements Serializable {
     private int id; // 用户 id
     private String nickname; // 用户昵称
     private String username; // 用户名称

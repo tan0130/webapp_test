@@ -28,11 +28,11 @@ public class PageController {
     }
 
     /**
-     * 跳转 laiui 页面
+     * 跳转 admin 页面
      * */
-    @RequestMapping(value="/toLayPage")
+    @RequestMapping(value="/toAdminPage")
     public String toLayPage() {
-        return "/page/layui";
+        return "admin/admin";
     }
 
     /**
@@ -56,7 +56,7 @@ public class PageController {
      * */
     @RequestMapping(value="/toIndexPage")
     public String toIndexPage() {
-        return "admin/index";
+        return "page/index";
     }
 
     /**
@@ -65,5 +65,13 @@ public class PageController {
     @RequestMapping(value="/toUserinfoPage")
     public String toUserInfoPage() {
         return "page/userinfo";
+    }
+
+    /**
+     * 注销跳转 login 页面
+     * */
+    @RequestMapping(value="/toLoginPage")
+    public String toLoginPage() {
+        return "login";
     }
 }
