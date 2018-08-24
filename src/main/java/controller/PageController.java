@@ -3,6 +3,9 @@ package controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * create by 1311230692@qq.com on 2018/8/14 14:42
  * 页面跳转
@@ -71,7 +74,24 @@ public class PageController {
      * 注销跳转 login 页面
      * */
     @RequestMapping(value="/toLoginPage")
-    public String toLoginPage() {
-        return "login";
+    public void toLoginPage(HttpServletRequest request, HttpServletResponse response) throws Exception{
+
+        request.getRequestDispatcher("/login.html").forward(request,response);
+    }
+
+    /**
+     * 跳转 register 页面
+     * */
+    @RequestMapping(value="/toRegisterPage")
+    public String toRegisterPage() {
+        return "page/register";
+    }
+
+    /**
+     * 跳转 updatePassword 页面
+     * */
+    @RequestMapping(value="/toUpdatePassword")
+    public String toUpdatePassword() {
+        return "page/updatepassword";
     }
 }

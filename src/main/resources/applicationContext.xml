@@ -60,7 +60,7 @@
     </bean>
 
     <!-- 使用注解事务，需要添加Transactional注解属性 -->
-    <!--<tx:annotation-driven transaction-manager="transactionManager" />-->
+    <tx:annotation-driven transaction-manager="transactionManager" />
 
     <!-- 多文件上传 -->
     <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

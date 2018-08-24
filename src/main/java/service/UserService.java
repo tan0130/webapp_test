@@ -14,4 +14,8 @@ public interface UserService {
     List<User> getUserById(int id,int page, int limit); // 根据 id 查询用户信息
     User getUserById1(int id); // 验证 id 是否存在
     User getUserByIdAndPassword(int id, String password); // 验证密码是否正确
+    void addUser(User user); // 添加用户信息
+    User getUserByNickname(String nickname); // 根据用户名查询信息
+    void deleteUserById(int id); // 根据 id 删除员工信息
+    void updatePassword(User user); // 修改密码
 }

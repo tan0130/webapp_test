@@ -27,9 +27,10 @@
 
     <script type="text/javascript" src="/resources/layui/layui.js"></script>
     <script type="text/javascript">
-        layui.use(['layer', 'table'], function() {
+        layui.use(['layer', 'table','jquery'], function() {
             var table = layui.table; // 表格
             var layer = layui.layer; // 弹层
+            var $ = layui.jquery;
             var url;
             url = '/user/getAllUser';
             //执行一个 table 实例
@@ -72,11 +73,38 @@
             table.on('tool(tb)', function(obj){ // 注：tool 是工具条事件名，tb_info 是 table 原始容器的属性 lay-filter="对应的值"
                 var data = obj.data // 获得当前行数据
                     ,layEvent = obj.event; // 获得 lay-event 对应的值
+                //console.log(data.id);
+                var id = data.id;
                 if(layEvent === 'detail'){
                     layer.msg('查看操作');
                 } else if(layEvent === 'del'){
-                    layer.confirm('真的删除行么', function(index){
-                        obj.del(); //删除对应行（tr）的DOM结构
+                    layer.confirm('真的删除吗', function(index){
+                        //console.log(data);
+                        //obj.del(); //删除对应行（tr）的DOM结构
+                        $.ajax({
+                            type:'get',
+                            url: '/user/deleteUser',
+                            data: {
+                                id: data.id
+                            },
+                            dataType: 'text',
+                            async: false,
+                            success: function(res) {
+                                if ("success" == res) {
+                                    layer.msg("删除成功",{icon:1});
+                                    //执行重载
+                                    table.reload('testReload', {
+                                        url: '/user/getAllUser'
+                                    });
+                                } else {
+                                    layer.msg("删除失败",{icon:5});
+                                }
+                            },
+                            error: function() {
+                                layer.msg("服务器错误，请联系管理员",{icon:5});
+                            }
+                        });
+
                         layer.close(index);
                         //向服务端发送删除指令
                     });
@@ -84,14 +112,6 @@
                     layer.msg('编辑操作');
                 }
             });
-
-            // 监听单元格编辑
-            table.on('edit(tb)', function(obj) {
-                var value = obj.value // 获取修改后的值
-                ,data = obj.data // 得到所在行所有键值
-                ,field = obj.field; // 得到字段
-                layer.msg('[ID:' + data.id + ']' + field + ' 字段更改为：' + value);
-            })
 
             // 根据 id 搜索
             var $ = layui.$, active = {

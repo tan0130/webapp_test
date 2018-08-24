@@ -2,12 +2,122 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>登录界面</title>
+    <link rel="stylesheet" href="/resources/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/resources/css/style.css">
+    <link rel="stylesheet" href="/resources/css/iconfont.css">
 </head>
 <body>
-    <a href="/page/toWebPage">跳转 webapp 页面</a><br/>
-    <a href="/page/toLayPage">跳转 layui 页面</a><br/>
-    <a href="/page/toNavPage">跳转 layui nav 页面</a>
-    <!--<a href="/user/toLayuiFormPage">跳转 layui_form 页面</a>-->
+<fieldset class="ayui-field-title" style="margin-left:43%;margin-top: 14%;width:300px">
+    <div style="margin-left: 8%">
+    <!-- 标题 -->
+        <div class="layui-field-title lg-title">
+            <h1>欢迎登录</h1>
+        </div>
+        <!-- 表单 -->
+        <div class="" style="margin-left: 1%">
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <input type="text" name="id" id="id" lay-verify="required|number" autocomplete="off" placeholder="请输入工号"
+                               class="layui-input"/>
+                    </div>
+                </div>
+
+                <!-- 暗文密码输入框 -->
+                <!--<div class="layui-form-item">-->
+                    <!--<div class="layui-input-inline" id="pswd_invisible" style="display:none">-->
+                        <!--<input type="password" name="password" id="input_invisible" lay-verify="required" autocomplete="off"-->
+                               <!--placeholder="请输入密码" class="layui-input"/>-->
+                        <!--<img id="invisible" onclick="showPswd()" src="/resources/image/眼睛-闭.png">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!-- 明文密码输入框 -->
+                <div class="layui-form-item">
+                    <div class="layui-input-inline" id="pswd_visible">
+                        <input type="password" name="password" id="demo_input" lay-verify="required" autocomplete="off"
+                               placeholder="请输入密码" class="layui-input"/>
+                        <!--<i class="visible" onclick="showPswd()" id="eye"></i>-->
+                       <img id="demo_img" onclick="showPswd()" src="/resources/image/眼睛-睁.png" class="lg-passwordImg"/>
+                    </div>
+                </div>
+                <div class="layui-input-inline">
+                    <button lay-submit lay-filter="login" class="layui-btn lg-btn">登录</button>
+                </div>
+                <hr class="lg-hr"/>
+                <p><a href="/page/toRegisterPage" class="lg-register">立即注册</a><a href="javascript:;"
+                                                                         class="lg-forgetPwd">忘记密码?</a>
+            </form>
+        </div>
+    </div>
+</fieldset>
+    <script type="text/javascript" src="/resources/layui/layui.js"></script>
+    <script type="text/javascript">
+
+        var $;
+
+        layui.use(['form','layer','jquery'], function() {
+            // 操作对象
+            var form = layui.form;
+            $ = layui.jquery;
+            var id = $('#id').val();
+            var password = $('#password').val();
+
+            form.on('submit(login)',function(res) {
+                console.log(id + '...' + password);
+                $.ajax({
+                    url: '/user/login',
+                    type: 'post',
+                    async: false,
+                    dataType: 'json',
+                    data: res.field,
+                    success: function(data) {
+                        if (data.result == "success") {
+                            window.location.href = "/page/toAdminPage";
+                        } else if (data.result == "idNotExist") {
+                            layer.msg("用户不存在",{icon:5});
+                        } else if (data.result == "wrongPassword") {
+                            layer.msg("密码不正确",{icon:5});
+                        } else {
+                            layer.msg("服务器错误，请联系管理员");
+                        }
+                    }
+                    ,error: function(data) {
+                        if (data == "fail") {
+                            layer.msg("服务器错误，请联系管理员");
+                        }
+                    }
+                })
+                return false;
+            })
+        })
+
+        // 对密码显示和隐藏做切换
+        // function switchPwd() {
+        //     var passwordeye = $('#passwordeye');
+        //     var password = $('#password');
+        //     passwordeye.off('click').on('click',function(){
+        //         if (passwordeye.hasClass('invisible')) {
+        //             passwordeye.removeClass('invisible').addClass('visible'); // 密码课件
+        //             showPwd.prop('type','text');
+        //         }
+        //     })
+        // }
+
+        var demoImg = document.getElementById('demo_img');
+        var demoInput = document.getElementById('demo_input');
+        function showPswd() {
+            if (demoInput.type == "password") {
+                 demoInput.type = 'text';
+                demoImg.src = "/resources/image/眼睛-睁.png";
+                // eye.className = "visible";
+            } else {
+                 demoInput.type = 'password';
+                demoImg.src = "/resources/image/眼睛-闭.png";
+                // eye.className = 'invisible';
+            }
+        }
+    </script>
 </body>
 </html>

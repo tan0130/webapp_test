@@ -822,6 +822,7 @@ a cite {
 .layui-layout-admin .layui-side {
     top: 60px;
     width: 200px;
+    /*bottom: 44px; <!-- 改变侧边栏的高度 -->*/
     overflow-x: hidden
 }
 
@@ -838,6 +839,7 @@ a cite {
 .layui-layout-admin .layui-footer {
     position: fixed;
     left: 200px;
+    /*left: 0;*/
     right: 0;
     bottom: 0;
     height: 44px;

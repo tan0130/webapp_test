@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+</head>
+<body>
+    <a href="/page/toWebPage">跳转 webapp 页面</a><br/>
+    <a href="/page/toLayPage">跳转 layui 页面</a><br/>
+    <a href="/page/toNavPage">跳转 layui nav 页面</a>
+    <!--<a href="/user/toLayuiFormPage">跳转 layui_form 页面</a>-->
+</body>
+</html>

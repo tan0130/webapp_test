@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>用户注册页面</title>
+    <link rel="stylesheet" href="/resources/layui/css/layui.css">
+    <link rel="stylesheet" href="/resources/css/style.css"/>
+</head>
+<body>
+<fieldset class="ayui-field-title" style="margin-left:36%;margin-top: 7%;width:500px">
+    <legend>用户注册</legend>
+
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="nickname" id="nick-name" lay-verify="required|nickname"
+                       placeholder="请输入用户名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="username" id="user-name" required lay-verify="required" placeholder="请输入真实姓名"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline">
+                <input type="password" name="password" id="password" required lay-verify="required|password"
+                       placeholder="请输入密码" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux" style="margin-left:110px">密码必须6到12位</div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">验证手机</label>
+                <div class="layui-input-inline">
+                    <input name="tel" lay-verify="required|phone" autocomplete="off" class="layui-input" type="tel">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="男" title="男" checked>
+                <input type="radio" name="sex" value="女" title="女">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="register">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+        <hr/>
+        <p><a href="/page/toLoginPage" class="" style="margin-left:110px">已有账号，立即登录</a>
+    </form>
+</fieldset>
+
+<script src="/resources/layui/layui.js"></script>
+<script>
+    layui.use(['form','layer','jquery'], function(){
+       var form = layui.form;
+       var layer = layui.layer;
+       var $ = layui.jquery;
+
+        //监听提交
+        form.on('submit(register)', function(data){
+            console.log(data.field);
+            //layer.msg(JSON.stringify(data.field));
+            $.ajax({
+                type: 'post',
+                url: '/user/addUser',
+                data: data.field,
+                dataType: 'json',
+                async: false,
+                success: function(res) {
+                    if ("success" == res.result) {
+                        layer.msg("用户注册成功" + "\n 登录 id 为：" + res.id + "\n 5秒后返回登录页面",{icon:1});
+                        setTimeout(function() {
+                            window.location.href = "/page/toLoginPage";
+                        },5000);
+                    } else if ("fail" == res.result) {
+                        layer.msg("注册失败",{icon:5});
+                    }
+                },
+                error: function() {
+                    layer.msg("服务器错误，请联系管理员");
+                }
+            });
+            return false;
+        });
+
+
+        // 自定义校验规则
+        form.verify({
+            nickname: function(value){
+                if(value.length < 3){
+                    return '用户名至少3个字';
+                }
+            }
+            ,password: [/(.+){6,12}$/, '密码必须6到12位']
+        });
+    });
+</script>
+</body>
+</html>

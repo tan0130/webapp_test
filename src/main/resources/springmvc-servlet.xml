@@ -27,4 +27,12 @@
         <property name="prefix" value="/WEB-INF/"/>
         <property name="suffix" value=".html"/>
     </bean>
+
+    <!-- 拦截请求 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/page/**"/>
+            <bean class="interceptor.LoginIntercepter"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

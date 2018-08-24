@@ -16,7 +16,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
     // 注入 DAO 接口
-//    @Autowired
     @Resource
     private UserDAO userDAO;
 
@@ -41,5 +40,25 @@ public class UserServiceImpl implements UserService{
     @Override
     public User getUserByIdAndPassword(int id, String password) {
         return userDAO.getUserByIdAndPassword(id, password);
+    }
+
+    @Override
+    public void addUser(User user) {
+        userDAO.addUser(user);
+    }
+
+    @Override
+    public User getUserByNickname(String nickname) {
+        return userDAO.getUserByNickname(nickname);
+    }
+
+    @Override
+    public void deleteUserById(int id) {
+        userDAO.deleteUserById(id);
+    }
+
+    @Override
+    public void updatePassword(User user) {
+        userDAO.updatePassword(user);
     }
 }

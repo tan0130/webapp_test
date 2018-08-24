@@ -6,6 +6,24 @@
     <title>信息管理系统</title>
     <link rel="stylesheet" href="/resources/layui/css/layui.css"/>
     <link rel="stylesheet" href="/resources/css/iconfont.css"/>
+
+    <!--<style>-->
+
+        <!--@media screen and (max-width: 750px){-->
+            <!--/*左侧导航*/-->
+            <!--.layui-layout-admin .layui-side{ left:-260px; }-->
+            <!--.site-mobile .layui-side{ left: 0; z-index:9999; }-->
+            <!--.site-tree-mobile {display: block!important; position: fixed; z-index: 100000; bottom: 15px; left: 15px; width: 50px; height: 50px; line-height: 50px; border-radius: 2px; text-align: center; background-color: rgba(0,0,0,.7); color: #fff;}-->
+            <!--.site-mobile .site-mobile-shade { content: ''; position: fixed; top: 0; bottom: 0; left: 0; right: 0; background-color: rgba(0,0,0,.8); z-index: 999;}-->
+
+            <!--/*layui-body*/-->
+            <!--.panel{ width:50%; }-->
+
+            <!--.layui-body,.layui-layout-admin .layui-footer{ left:0; }-->
+        <!--}-->
+
+    <!--</style>-->
+
     <!--<link rel="stylesheet" href="/resources/css/layer.css"/>
     <link rel="stylesheet" href="/resources/css/laydate.css"/>-->
     <script type="text/javascript" src="/resources/js/jquery.min.js"></script>
@@ -17,7 +35,11 @@
     <div class="layui-header">
         <div class="layui-logo">信息管理系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
+
+
+
         <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><img id="nav_img" src="/resources/image/菜单.png" onclick="hideSideBar()"/></li>
             <li class="layui-nav-item"><a href="/page/toLayuiFormPage" target="myFrame">控制台</a></li>
             <li class="layui-nav-item"><a href="">商品管理</a></li>
             <li class="layui-nav-item"><a href="/page/toUserinfoPage" target="myFrame">用户</a></li>
@@ -38,10 +60,11 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">密码修改</a></dd>
+                    <dd><a href="/page/toUpdatePassword" target="myFrame">密码修改</a></dd>
+                    <dd><a href="/page/toLoginPage">注销</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="/page/toLoginPage">注销</a></li>
+            <!--<li class="layui-nav-item"><a href="/page/toLoginPage">注销</a></li>-->
         </ul>
     </div>
 
@@ -50,6 +73,8 @@
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <!--<div id="nav" lay-filter="demo">-->
+
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="layui-icon layui-icon-home" href="javascript:;">&nbsp;&nbsp;主页</a>
@@ -72,6 +97,8 @@
                 <li class="layui-nav-item"><a href="">云市场</a></li>
                 <li class="layui-nav-item"><a href="">发布商品</a></li>
             </ul>
+
+            <!--</div> &lt;!&ndash; end nav &ndash;&gt;-->
         </div>
     </div>
 
@@ -90,12 +117,13 @@
 <script type="text/javascript">
 
 
-    var $, layer;
+    var $, layer,navbar;
     //JavaScript代码区域
-    layui.use('element','layer','jquery', function(){
-        var element = layui.element;
-        var $ = layui.jquery;
-        var layer = layui.layer;
+    layui.use('element','layer','jquery','navbar', function(){
+        //var element = layui.element;
+        $ = layui.jquery;
+        layer = layui.layer;
+        navbar = layui.navbar;
        // element.init();
     });
     $(document).ready(function(){
@@ -114,7 +142,10 @@
         })
     });
 
+    navbar.set({
+        elem: '#nav',
 
+    });
 
     // iframe 自适应窗口大小
     // 方法一
@@ -131,6 +162,25 @@
     window.onresize=function(){
        // changeFrameHeight();
     }
+
+    function hideSideBar() {
+        var flag = true;
+        $('#nav_img').click(function(){
+            //这里定义一个全局变量来方便判断动画收缩的效果,也就是放在最外面
+            if(flag = true){
+                $(".layui-side").animate({width:'toggle'});
+                $(".layui-body").animate({left:'0px'});
+                $(".layui-footer").animate({left:'0px'});
+                flag = false;
+            } else {
+                $(".layui-side").animate({width:'toggle'});
+                $(".layui-body").animate({left:'18%'});
+                $(".layui-footer").animate({left:'200px'});
+                flag = true;
+            }
+        });
+    }
+
 
 </script>
 </body>

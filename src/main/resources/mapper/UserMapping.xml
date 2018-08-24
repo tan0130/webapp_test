@@ -28,6 +28,26 @@
         select * from tb_user where id = #{arg0} and password = #{arg1}
     </select>
 
+    <!-- 添加用户信息 -->
+    <select id = "addUser" parameterType="entity.User">
+       insert into tb_user(nickname,username,password,tel,sex) values(#{nickname},#{username},#{password},#{tel},#{sex})
+    </select>
+
+    <!-- 根据用户名查询信息 -->
+    <select id = "getUserByNickname" parameterType="String" resultType="entity.User">
+       select * from tb_user where nickname = #{nickname}
+    </select>
+
+    <!-- 根据用户名查询信息 -->
+    <delete id = "deleteUserById" parameterType="int">
+       delete from tb_user where id = #{id}
+    </delete>
+
+    <!--编辑用户信息-->
+    <update id = "updatePassword" parameterType="entity.User">
+        update tb_user set password = #{password} where id = #{id};
+    </update>
+
     <!-- 根据ID和密码查询用户信息 在MyBatis3.4.4版不能直接使用#{0}要使用 #{arg0}-->
     <!--<select id="getUserByIdAndPwd" resultType="ssm.entity.User">-->
         <!--select * from user where id = #{arg0} and password = #{arg1};-->
