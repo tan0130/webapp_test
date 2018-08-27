@@ -7,6 +7,51 @@
     <link rel="stylesheet" href="/resources/layui/css/layui.css"/>
     <link rel="stylesheet" href="/resources/css/iconfont.css"/>
 
+    <style type="text/css">
+        /*body,div {*/
+            /*padding: 0;*/
+            /*margin: 0;*/
+            /*width: 100%;*/
+        /*}*/
+
+        .container {
+            width: 100%;
+        }
+
+        .nav {
+            float:left;
+            width: 30%;
+            height:400px;
+            background-color: #1E9FFF;
+            transition: all 0.5s ease-out
+        }
+
+        .content {
+            display: table-cell;
+            *display:inline-block;
+            width: 2000px;
+            *width: auto;
+            height: 400px;
+            background-color: #9F9F9F;
+        }
+
+        .hide {
+            margin-left: -30%;
+        }
+
+        .body1 {
+            /*margin-left: -30%;*/
+            top: 60px;
+            bottom: 44px
+        }
+
+        .footer {
+            left:200px;
+            /*margin-left: -30%;*/
+        }
+
+    </style>
+
     <!--<style>-->
 
         <!--@media screen and (max-width: 750px){-->
@@ -142,43 +187,64 @@
         })
     });
 
-    navbar.set({
-        elem: '#nav',
-
-    });
+    // navbar.set({
+    //     elem: '#nav',
+    //
+    // });
 
     // iframe 自适应窗口大小
     // 方法一
 
 
-    function changeFrameHeight(){
-        /*var ifm= document.getElementById("myFrame");
-        ifm.height=document.documentElement.clientHeight;*/
-
-        document.getElementById("myFrame").height=0;
-        document.getElementById("myFrame").height=document.getElementById("myFrame").contentWindow.document.body.scrollHeight;
-
-    }
-    window.onresize=function(){
-       // changeFrameHeight();
-    }
-
+    // function changeFrameHeight(){
+    //     /*var ifm= document.getElementById("myFrame");
+    //     ifm.height=document.documentElement.clientHeight;*/
+    //
+    //     document.getElementById("myFrame").height=0;
+    //     document.getElementById("myFrame").height=document.getElementById("myFrame").contentWindow.document.body.scrollHeight;
+    //
+    // }
+    // window.onresize=function(){
+    //     changeFrameHeight();
+    // }
+    var flag = false;
     function hideSideBar() {
-        var flag = true;
-        $('#nav_img').click(function(){
-            //这里定义一个全局变量来方便判断动画收缩的效果,也就是放在最外面
-            if(flag = true){
-                $(".layui-side").animate({width:'toggle'});
-                $(".layui-body").animate({left:'0px'});
-                $(".layui-footer").animate({left:'0px'});
-                flag = false;
-            } else {
-                $(".layui-side").animate({width:'toggle'});
-                $(".layui-body").animate({left:'18%'});
-                $(".layui-footer").animate({left:'200px'});
-                flag = true;
-            }
-        });
+        var nav = $('.layui-side');
+       var body = $('.layui-body');
+       var footer = $('.layui-footer');
+        nav.toggleClass('hide');
+
+        if (flag == false) {
+            $(".layui-body").animate({left:'0px'});
+            $(".layui-footer").animate({left:'0px'});
+            flag = true;
+        } else {
+            $(".layui-body").animate({left:'200px'});
+            $(".layui-footer").animate({left:'200px'});
+            flag = false;
+        }
+
+        console.log("125..." + flag);
+        // var flag = true;
+        // var i = 1;
+        // $('#nav_img').click(function(){
+        //     //这里定义一个全局变量来方便判断动画收缩的效果,也就是放在最外面
+        //     if(i == 0){
+        //         $(".layui-side").animate({width:'toggle'});
+        //         $(".layui-body").animate({left:'0px'});
+        //         $(".layui-footer").animate({left:'0px'});
+        //         i++;
+        //         console.log("隐藏:" + i);
+        //         return false;
+        //     } else {
+        //         $(".layui-side").animate({width:'toggle'});
+        //         $(".layui-body").animate({left:'18%'});
+        //         $(".layui-footer").animate({left:'200px'});
+        //         i--;
+        //         console.log("显示:" + i);
+        //         return false;
+        //     }
+        // });
     }
 
 

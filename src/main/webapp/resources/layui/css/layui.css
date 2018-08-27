@@ -828,7 +828,9 @@ a cite {
 
 .layui-layout-admin .layui-body {
     top: 60px;
-    bottom: 44px
+    bottom: 44px;
+    display: table-cell;
+    *display:inline-block
 }
 
 .layui-layout-admin .layui-main {

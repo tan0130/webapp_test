@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body,div {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        .nav {
+            float:left;
+            width: 30%;
+            height:400px;
+            background-color: #1E9FFF;
+            transition: all 0.5s ease-out
+        }
+
+        .content {
+            display: table-cell;
+            *display:inline-block;
+            width: 2000px;
+            *width: auto;
+            hieght: 400px;
+            background-color: #9F9F9F;
+        }
+
+        .hide {
+            margin-left: -10%;
+        }
+
+    </style>
+    <script src="/resources/js/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="content"></div>
+        <div class="nav"></div>
+        <button id="go">click</button>
+    </div>
+<script>
+    var nav = $('.nav');
+    var content = $('.content');
+    var go = $('#go');
+    go.on('click',function() {
+        nav.toggleClass('hide');
+    })
+</script>
+</body>
+</html>

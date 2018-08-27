@@ -94,4 +94,12 @@ public class PageController {
     public String toUpdatePassword() {
         return "page/updatepassword";
     }
+
+    /**
+     * 跳转 test 页面
+     * */
+    @RequestMapping(value="/toTestPage")
+    public String toTestPage() {
+        return "admin/test";
+    }
 }
